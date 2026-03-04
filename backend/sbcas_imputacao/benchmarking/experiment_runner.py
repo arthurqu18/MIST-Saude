@@ -147,6 +147,7 @@ class ExperimentRunner:
         results_final["quadrante"] += np.where(results_final["Entropia"] >= media_y, " Superior", " Inferior")
 
         erro_medio = results_final.groupby("quadrante")[["Erro Absoluto média", "Erro Absoluto knn","Erro Absoluto mice","Erro Absoluto missforest", "Erro Absoluto tabpfn"]].mean()
+        erro_medio = erro_medio.round(2)
         print(erro_medio)
 
         fig, ax = plt.subplots(figsize=(8, 6))

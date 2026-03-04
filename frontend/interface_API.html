@@ -404,7 +404,7 @@
                 <table style="font-size:0.8rem;">
                   <tr style="background:#f4f4f4;"><th>Método</th>${Object.keys(item.erro_medio[Object.keys(item.erro_medio)[0]]).map(q => `<th>${q}</th>`).join('')}</tr>
                   ${Object.entries(item.erro_medio).map(([met, quads]) => `
-                    <tr><td><strong>${met}</strong></td>${Object.values(quads).map(v => `<td>${v ? v.toFixed(4) : '-'}</td>`).join('')}</tr>
+                    <tr><td><strong>${met}</strong></td>${Object.values(quads).map(v => `<td>${v ? v.toFixed(2) : '-'}</td>`).join('')}</tr>
                   `).join('')}
                 </table>
               </div>
