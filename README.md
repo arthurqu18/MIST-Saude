@@ -1,5 +1,5 @@
 # MIST_Download
-Este repositório é para que aqueles que desejarem baixar nossa ferramenta MIST-Saúde.
+Este repositório é para que aqueles que desejarem baixar nossa ferramenta MIST.
 
 ## Pré-requisitos:
 
