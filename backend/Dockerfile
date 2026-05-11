@@ -1,13 +1,11 @@
 # Build stage
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04 as builder
+FROM python:3.11-slim as builder
 
 WORKDIR /app
 
 # Instala Python e dependências de build
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3.11 \
-    python3-pip \
-    python3.11-dev \
+    python3-dev \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
@@ -16,21 +14,20 @@ ARG HF_TOKEN=""
 
 # Copia e instala dependências em um diretório temporário
 COPY requirements.txt .
-RUN pip3 install --user --no-cache-dir -r requirements.txt
+RUN pip install --user --no-cache-dir -r requirements.txt
 
 # Faz login no HuggingFace se HF_TOKEN for fornecido
 RUN if [ -n "$HF_TOKEN" ]; then \
-    python3 -c "from huggingface_hub import login; login(token='$HF_TOKEN', add_to_git_credential=False)"; \
+    python -c "from huggingface_hub import login; login(token='$HF_TOKEN', add_to_git_credential=False)"; \
     fi
 
 # Runtime stage
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+FROM python:3.11-slim
 
 WORKDIR /app
 
 # Instala Python na stage de runtime
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3.11 \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 

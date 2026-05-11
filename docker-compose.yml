@@ -15,15 +15,6 @@ services:
       - HF_TOKEN=${HF_TOKEN:-}
       - HUGGINGFACE_HUB_TOKEN=${HUGGINGFACE_HUB_TOKEN:-}
       - TABPFN_ALLOW_CPU_LARGE_DATASET=1
-      - CUDA_VISIBLE_DEVICES=0
-    runtime: nvidia
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
 
   frontend:
     build: ./frontend
