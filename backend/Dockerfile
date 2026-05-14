@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Aceita HF_TOKEN como build argument
 ARG HF_TOKEN=""
+ARG TABPFN_TOKEN=""
 
 # Copia e instala dependências em um diretório temporário
 COPY requirements.txt .
@@ -36,6 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Aceita HF_TOKEN como build argument para a stage de runtime
 ARG HF_TOKEN=""
+ARG TABPFN_TOKEN=""
 
 # Copia apenas os pacotes instalados do builder
 COPY --from=builder /root/.local /root/.local

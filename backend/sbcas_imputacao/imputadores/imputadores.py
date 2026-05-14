@@ -70,6 +70,15 @@ class tabpfn_imputer:
                 print(f"Aviso: Falha ao fazer login com token da HuggingFace: {e}")
         else:
             print("Aviso: Token da HuggingFace ausente. Defina HF_TOKEN ou HUGGINGFACE_HUB_TOKEN.")
+
+        # TabPFN exige token para baixar pesos em ambientes não interativos
+        tabpfn_token = os.getenv("TABPFN_TOKEN")
+        if not tabpfn_token:
+            raise RuntimeError(
+                "TABPFN_TOKEN não encontrado no ambiente. "
+                "Defina TABPFN_TOKEN (API Key do Prior Labs) antes de usar o método 'tabpfn'."
+            )
+        os.environ.setdefault("TABPFN_TOKEN", tabpfn_token)
         
         # Detectar se CUDA está disponível
         if torch.cuda.is_available():

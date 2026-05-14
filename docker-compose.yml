@@ -14,6 +14,7 @@ services:
     environment:
       - HF_TOKEN=${HF_TOKEN:-}
       - HUGGINGFACE_HUB_TOKEN=${HUGGINGFACE_HUB_TOKEN:-}
+      - TABPFN_TOKEN=${TABPFN_TOKEN:-}
       - TABPFN_ALLOW_CPU_LARGE_DATASET=1
       - CUDA_VISIBLE_DEVICES=0
     runtime: nvidia
